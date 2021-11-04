@@ -1,6 +1,4 @@
 const PathFuntion = require('./getPathFunction.js');
 const myArgs = process.argv[2];
 
-PathFuntion.getPath(myArgs);
-
-//PathFuntion.extractMD();
+console.log(PathFuntion.getPath(myArgs));
