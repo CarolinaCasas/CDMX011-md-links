@@ -1,5 +1,0 @@
-const readReadme =(pathMD)=>{
-
-}
-
-readReadme()

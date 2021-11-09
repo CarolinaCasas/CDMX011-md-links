@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path')
 
+
 const getPath = (entrypath, returnPath = []) => {
   const absoluteRoute = path.resolve(entrypath);
 
