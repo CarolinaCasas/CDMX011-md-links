@@ -1,13 +1,29 @@
+const { readFileSync } = require('fs');
+const markdownLinkExtractor = require('markdown-link-extractor');
 
-const readMD =(allpathMD)=>{
- const fs =require('fs');
-   const allFilesMD = allpathMD.map((pathMD)=>fs.readFileSync(pathMD, 'utf8')); 
-    return allFilesMD;
-    
+const readMD = (allpathMD) => {
+
+
+  const linksObj = [];
+  allpathMD.map((pathMD) => {
+    const markdown = readFileSync(pathMD, { encoding: 'utf8' });
+
+    const links = markdownLinkExtractor(markdown, false);
+    const objeto= {
+      file:pathMD,
+      links:[]
+    }
+    links.forEach(link => objeto.links.push(link));
+    linksObj.push(objeto)
+
+});
+
+
+  return linksObj;
+
 }
 
 
-
 module.exports = {
-   readMD
-  }
+  readMD
+}
