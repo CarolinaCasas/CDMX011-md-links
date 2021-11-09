@@ -1,5 +1,5 @@
 
-const path = require('path');
+/* const path = require('path');
 const fs = require('fs');
 //Lee archivo md
 const mdFile = (absoluteRoute) => {
@@ -7,31 +7,33 @@ const mdFile = (absoluteRoute) => {
 }
 
 
-const extractMd = (absoluteRoute) => {
+const extractMd = (absoluteRoute, calback) => {
      fs.readdir(absoluteRoute, (error, files) => {
         if (error) {
             console.log(error);
         } else{
 
           const filePath =  files.map((filesNeedPath)=> absoluteRoute +'/'+filesNeedPath);
+
+          
           /* filePath.forEach((allFilePath)=>{
               if(fs.lstatSync(allFilePath).isDirectory()===true){
     
             console.log(extractMd(filePath))}
         }); */
-console.log(filePath);
+/*console.log(filePath);
         
     };
     
 
 });
 
-}
+} */
 
-module.exports = {
+/* module.exports = {
     mdFile,
     extractMd
-}
+} */
 
 // filtra los archivos con extención md
        // const filesFilter = files.filter(allFiles => path.extname(allFiles) == '.md');
@@ -53,3 +55,41 @@ module.exports = {
         }.bind({index: index, file: file})); 
     }
 } */
+
+
+
+/* }
+else {
+return  path.extname(absoluteRoute) == '.md' ? fs.readFileSync(absoluteRoute, 'utf8') : 'No es un archivo md';
+
+} */
+
+/* const getPath = ( entrypath, callback )=> {
+  const fs = require('fs');
+  const pathResolve = require('path').resolve
+  const absoluteRoute = pathResolve(entrypath);
+  
+// is directory
+  fs.readdir(absoluteRoute, (error, files) => {
+         if (error) {
+             console.log(error);
+         } 
+
+         if (fs.lstatSync(absoluteRoute).isDirectory()===true){
+           const filePath =  files.map((filesNeedPath)=> absoluteRoute +'/'+filesNeedPath);
+ 
+           console.log(filePath);        
+           /* filePath.forEach((allFilePath)=>{
+               if(fs.lstatSync(allFilePath).isDirectory()===true){
+     
+             console.log(extractMd(filePath))}
+         }); */
+
+
+
+/* }else{
+  return path.extname(absoluteRoute) == '.md' ? fs.readFileSync(absoluteRoute, 'utf8') : 'No es un archivo md';
+ }
+  
+ 
+ } */
