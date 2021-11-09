@@ -1,38 +1,28 @@
 const fs = require('fs');
 const path = require('path')
 
-const getPath = (entrypath, callbackpath=[]) => {
-
+const getPath = (entrypath, returnPath = []) => {
   const absoluteRoute = path.resolve(entrypath);
-  
-  if (fs.lstatSync(absoluteRoute).isDirectory() === true) {
-    fs.readdir(absoluteRoute, (error, files) => {
-      if (error) {
-        console.log(error);
-      }
 
-      //retorna todas las rutas absolutas dentro del array
-     const filePath = files.map((filesNeedPath) => absoluteRoute + '/' + filesNeedPath);
-    
-     //Retorna las 
-      //detectar si hay mas carpetas
-     const file = filePath.map((allfilePath) => {
-      getPath(allfilePath, callbackpath=[])
-      });
+  if (fs.statSync(absoluteRoute).isDirectory() === true) {
+    const allFiles = fs.readdirSync(absoluteRoute);
 
-      console.log(file);
-
+    allFiles.forEach(file => {
+      const  newpath = path.join(absoluteRoute, file);
+      getPath(newpath, returnPath)
+    })
+    }
+  else {
+    if (path.extname(absoluteRoute) == '.md'|| path.extname(absoluteRoute) == 'markdown'){
+      returnPath.push(absoluteRoute);
+    }
       
-    });   
-    //console.log(filePath);
-}
-//else{
-//const filesMD = filePath.filter(allFiles => path.extname(allFiles) == '.md')
-//return callbackpath.push(filesMD)+'owo';
-//}
+  }
 
+return returnPath;
 }
 
+//console.log(getPath())
 module.exports = {
   getPath
 }
